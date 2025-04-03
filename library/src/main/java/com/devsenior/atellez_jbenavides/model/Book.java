@@ -2,32 +2,30 @@ package com.devsenior.atellez_jbenavides.model;
 
 public class Book {
 
+    private String isbn;
     private String title;
     private String author;
-    private String isbn;
-
-
-    public Book(String title, String author, String isbn) {
+    
+    public Book(String isbn, String title, String author) {
+        this.isbn = isbn;
         this.title = title;
         this.author = author;
-        this.isbn = isbn;
     }
-
-
-    public String getTitle() {
-        return title;
-    }
-
-
-    public String getAuthor() {
-        return author;
-    }
-
 
     public String getIsbn() {
         return isbn;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+}
+
+
     
 
-}
+

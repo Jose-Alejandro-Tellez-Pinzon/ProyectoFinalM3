@@ -3,16 +3,14 @@ package com.devsenior.atellez_jbenavides.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.devsenior.atellez_jbenavides.exeption.NotFoundExeption;
+import com.devsenior.atellez_jbenavides.exception.NotFoundException;
 import com.devsenior.atellez_jbenavides.model.Book;
 
 public class BookService {
-
     private List<Book> books;
 
-    public BookService(){
-
-        books = new ArrayList<>(); 
+    public BookService() {
+        books = new ArrayList<>();
     }
 
     public void addBook(String isbn, String title, String author) {
@@ -20,33 +18,27 @@ public class BookService {
     }
 
     public List<Book> getAllBooks() {
-
         return books;
     }
 
-    public Book getBookByIsbn(String isbn) throws NotFoundExeption {
-
+    public Book getBookByIsbn(String isbn) throws NotFoundException {
         for (var book : books) {
-
-            if (book.getIsbn().equals(isbn)) {
+            if(book.getIsbn().equals(isbn)) {
                 return book;
             }
-
         }
-        throw new NotFoundExeption("El libro con ISBN " + isbn + " no se encuentra en la base de datos");
+        throw new NotFoundException("No fue encontrado el libro con isbn: "+isbn);
     }
 
-    public void deleteBook(String isbn) throws NotFoundExeption {
 
+    public void deleteBook(String isbn) throws NotFoundException {
         for (var book : books) {
-
             if (book.getIsbn().equals(isbn)) {
                 books.remove(book);
-
                 return;
             }
         }
-        throw new NotFoundExeption("El libro con ISBN " + isbn + " no se encuentra en la base de datos");
+        throw new NotFoundException("No se puede eliminar el libro con isbn: "+isbn);
     }
 
 }
